@@ -1,11 +1,10 @@
 from smtplib import SMTP_SSL# to create smtp connection and ssl to secure and encrypt data so no one can see
-from email.message import EmailMessage
+from email.message import EmailMessage#used to structure mail like header,content etc
 import os
-import json
+import json#using login credentials from cred.login file
 
 file=open("cred.json")
-
-
+ 
 data=json.load(file)
 print(data)
 
@@ -24,12 +23,12 @@ def send_mail(SENDER_EMAIL,RECEIVER_EMAIL,MAIL_PASSWORD,subject,content):
 
     print(msg)
     
-
+    # creating connection
     #sending mail via smtp server
     with SMTP_SSL("smtp.gmail.com",465) as smtp:
         smtp.login(SENDER_EMAIL,MAIL_PASSWORD)
         smtp.send_message(msg)
-        smtp.close()
+        smtp.close()#recommended to close
     print("mail sent successfully")
 
 RECEIVER_EMAIL="harshith.7909@gmail.com"
